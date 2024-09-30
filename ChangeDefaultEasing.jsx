@@ -274,8 +274,20 @@ function updateSettings() {
   app.preferences.saveToDisk();
 }
 
+function settingsExist() {
+  if (
+    app.settings.haveSetting('Default Easing', 'Easy Ease') == 0 ||
+    app.settings.haveSetting('Default Easing', 'Ease In') == 0 ||
+    app.settings.haveSetting('Default Easing', 'Ease Out') == 0
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 // -- Main
-if (app.settings.haveSetting('Default Easing', 'Easy Ease') == 0) {
+if (!settingsExist()) {
   app.settings.saveSetting('Default Easing', 'Easy Ease', 33);
   app.settings.saveSetting('Default Easing', 'Ease In', 33);
   app.settings.saveSetting('Default Easing', 'Ease Out', 33);
