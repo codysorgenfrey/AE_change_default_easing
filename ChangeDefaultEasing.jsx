@@ -287,12 +287,25 @@ function settingsExist() {
 }
 
 // -- Main
+
+// Check for security preferences first just in case
+if (!isSecurityPrefSet()) {
+  alert(
+    'This script requires access to write files.\n' +
+      'Go to the "General" panel of the application preferences and make sure ' +
+      '"Allow Scripts to Write Files and Access Network" is checked.'
+  );
+  return; // Stop the script if we don't have write access
+}
+
+// Check for settings, if they don't exist, create them
 if (!settingsExist()) {
   app.settings.saveSetting('Default Easing', 'Easy Ease', 33);
   app.settings.saveSetting('Default Easing', 'Ease In', 33);
   app.settings.saveSetting('Default Easing', 'Ease Out', 33);
   app.preferences.saveToDisk();
 }
+
 var myPanel = buildUI(this);
 if (parseFloat(app.version) < 8) {
   alert('This script requires Adobe After Effects CS3 or later.');
