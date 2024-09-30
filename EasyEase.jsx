@@ -6,6 +6,7 @@ var layers = app.project.activeItem.selectedLayers;
 
 if (app.settings.haveSetting('Default Easing', 'Easy Ease') == 0) {
   app.settings.saveSetting('Default Easing', 'Easy Ease', 33);
+  app.preferences.saveToDisk();
 }
 
 var defaultEasing = app.settings.getSetting('Default Easing', 'Easy Ease');

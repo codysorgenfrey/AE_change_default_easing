@@ -4,6 +4,7 @@
 //
 //version history
 //1.0 Initial release. November 2017
+//1.1 Settings bug fix September 2024
 
 var proj = app.project;
 var undoStr = 'Change Default Easing';
@@ -270,6 +271,7 @@ function updateSettings() {
   app.settings.saveSetting('Default Easing', 'Easy Ease', easyEase);
   app.settings.saveSetting('Default Easing', 'Ease In', easeIn);
   app.settings.saveSetting('Default Easing', 'Ease Out', easeOut);
+  app.preferences.saveToDisk();
 }
 
 // -- Main
@@ -277,6 +279,7 @@ if (app.settings.haveSetting('Default Easing', 'Easy Ease') == 0) {
   app.settings.saveSetting('Default Easing', 'Easy Ease', 33);
   app.settings.saveSetting('Default Easing', 'Ease In', 33);
   app.settings.saveSetting('Default Easing', 'Ease Out', 33);
+  app.preferences.saveToDisk();
 }
 var myPanel = buildUI(this);
 if (parseFloat(app.version) < 8) {

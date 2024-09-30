@@ -5,6 +5,7 @@ app.beginUndoGroup(undoGroup);
 var layers = app.project.activeItem.selectedLayers;
 if (app.settings.haveSetting('Default Easing', 'Ease Out') == 0) {
   app.settings.saveSetting('Default Easing', 'Ease Out', 33);
+  app.preferences.saveToDisk();
 }
 var defaultEasing = app.settings.getSetting('Default Easing', 'Ease Out');
 var easeIn = new KeyframeEase(0, 0.1);
